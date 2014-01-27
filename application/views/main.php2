@@ -1,0 +1,30 @@
+<html>
+ <head><?php echo $map['js']; ?>
+	<script type="text/javascript">
+		function doPrint(){
+			var win = window.open('', 'Image');
+			if (win) {
+                win.document.writeln('<img src="http://maps.googleapis.com/maps/api/staticmap?center=' + map.getCenter() + '&size=700x600&sensor=true&maptype=roadmap<?php echo $marker; ?>&zoom=' + map.getZoom() + '" alt="image">');
+                win.document.close();
+                win.focus();
+                win.print();
+			}
+		}
+	</script>
+ </head>
+ <body>
+	<table border=1 width=>
+	<tr><td colspan=2><?php echo $menu; ?></td></tr>
+	<tr>
+	<td width='250px'><form method="POST" action="<?php echo $base_url; ?>index.php/main/search">
+						<input style="width:180px" type="text" name="cari" />
+						<input type="submit" value="Search" /><br/>
+						<select name='k_list'><option value='KOSONG'>-- Pilih Kategori --</option><?php echo $list; ?></select>
+					  </form></td>
+	<td rowspan=2 height='450px' width='700px'><?php echo $map['html']; ?></td>
+	</tr>
+	<tr><td valign='top' ><?php echo $hasil; ?></td></tr>
+	</table>
+	<br />
+ </body>
+</html>
